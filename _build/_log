@@ -1,0 +1,36 @@
+### Starting build.
+# Target: miniml.ml.depends, tags: { extension:ml, file:miniml.ml, ocaml, ocamldep, quiet, thread, traverse, use_str, use_unix }
+''ocamldep.opt -modules miniml.ml > miniml.ml.depends # cached
+# Target: evaluation.ml.depends, tags: { extension:ml, file:evaluation.ml, ocaml, ocamldep, quiet, thread, traverse, use_str, use_unix }
+''ocamldep.opt -modules evaluation.ml > evaluation.ml.depends
+# Target: expr.mli.depends, tags: { extension:mli, file:expr.mli, ocaml, ocamldep, quiet, thread, traverse, use_str, use_unix }
+''ocamldep.opt -modules expr.mli > expr.mli.depends # cached
+# Target: expr.cmi, tags: { byte, compile, extension:mli, file:expr.mli, interf, ocaml, quiet, thread, traverse, use_str, use_unix }
+''ocamlc.opt -c -thread -o expr.cmi expr.mli # cached
+# Target: miniml_lex.mll, tags: { extension:mll, file:miniml_lex.mll, lexer, ocaml, ocamllex, quiet, thread, traverse, use_str, use_unix }
+''ocamllex.opt -q miniml_lex.mll # cached
+# Target: miniml_lex.ml.depends, tags: { extension:ml, file:miniml_lex.ml, ocaml, ocamldep, quiet, thread, traverse, use_str, use_unix }
+''ocamldep.opt -modules miniml_lex.ml > miniml_lex.ml.depends # cached
+# Target: miniml_parse.mly, tags: { extension:mly, file:miniml_parse.mly, infer, ocaml, ocamlyacc, parser, quiet, thread, traverse, use_str, use_unix }
+''ocamlyacc miniml_parse.mly # cached
+# Target: miniml_parse.mli.depends, tags: { extension:mli, file:miniml_parse.mli, ocaml, ocamldep, quiet, thread, traverse, use_str, use_unix }
+''ocamldep.opt -modules miniml_parse.mli > miniml_parse.mli.depends # cached
+# Target: miniml_parse.cmi, tags: { byte, compile, extension:mli, file:miniml_parse.mli, interf, ocaml, quiet, thread, traverse, use_str, use_unix }
+''ocamlc.opt -c -thread -o miniml_parse.cmi miniml_parse.mli # cached
+# Target: miniml_lex.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:miniml_lex.cmo, file:miniml_lex.ml, implem, ocaml, quiet, thread, traverse, use_str, use_unix }
+''ocamlc.opt -c -thread -o miniml_lex.cmo miniml_lex.ml # cached
+# Target: evaluation.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:evaluation.cmo, file:evaluation.ml, implem, ocaml, quiet, thread, traverse, use_str, use_unix }
+''ocamlc.opt -c -thread -o evaluation.cmo evaluation.ml
+# Target: miniml.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:miniml.cmo, file:miniml.ml, implem, ocaml, quiet, thread, traverse, use_str, use_unix }
+''ocamlc.opt -c -thread -o miniml.cmo miniml.ml
+# Target: expr.ml.depends, tags: { extension:ml, file:expr.ml, ocaml, ocamldep, quiet, thread, traverse, use_str, use_unix }
+''ocamldep.opt -modules expr.ml > expr.ml.depends # cached
+# Target: expr.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:expr.cmo, file:expr.ml, implem, ocaml, quiet, thread, traverse, use_str, use_unix }
+''ocamlc.opt -c -thread -o expr.cmo expr.ml # cached
+# Target: miniml_parse.ml.depends, tags: { extension:ml, file:miniml_parse.ml, ocaml, ocamldep, quiet, thread, traverse, use_str, use_unix }
+''ocamldep.opt -modules miniml_parse.ml > miniml_parse.ml.depends # cached
+# Target: miniml_parse.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:miniml_parse.cmo, file:miniml_parse.ml, implem, ocaml, quiet, thread, traverse, use_str, use_unix }
+''ocamlc.opt -c -thread -o miniml_parse.cmo miniml_parse.ml # cached
+# Target: miniml.byte, tags: { byte, dont_link_with, extension:byte, file:miniml.byte, link, ocaml, program, quiet, thread, traverse, use_str, use_unix }
+''ocamlc.opt unix.cma str.cma -thread threads.cma expr.cmo evaluation.cmo miniml_parse.cmo miniml_lex.cmo miniml.cmo -o miniml.byte
+# Compilation successful.
